@@ -1,0 +1,27 @@
+{
+    "name": "@9elt/simple-color",
+    "version": "0.1.5",
+    "description": "A lightweight, simple rgb color class",
+    "main": "./dist/esm/index.js",
+    "types": "./dist/esm/index.d.ts",
+    "exports": {
+        "import": "./dist/esm/index.js",
+        "require": "./dist/cjs/index.js"
+    },
+    "scripts": {
+        "build:cjs": "tsc -p tsconfig.cjs.json && d=\"$(cat ./dist/cjs/index.d.ts)\"; echo \"${d/ extends Uint16Array/}\"> ./dist/cjs/index.d.ts",
+        "build:esm": "tsc -p tsconfig.esm.json && d=\"$(cat ./dist/esm/index.d.ts)\"; echo \"${d/ extends Uint16Array/}\"> ./dist/esm/index.d.ts && echo '{\"type\":\"module\"}' >dist/esm/package.json",
+        "build": "rm -rf dist && npm run build:cjs && npm run build:esm",
+        "pub": "npm run build && mv README README.md && npm publish; mv README.md README"
+    },
+    "author": "Lorenzo Cicuttin",
+    "license": "MIT",
+    "keywords": [
+        "color",
+        "lightweight",
+        "rgb"
+    ],
+    "readme": "./README",
+    "homepage": "https://github.com/9elt/color#readme",
+    "repository": "github:9elt/color"
+}
