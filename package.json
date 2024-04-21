@@ -1,6 +1,6 @@
 {
     "name": "@9elt/simple-color",
-    "version": "0.1.5",
+    "version": "0.1.0",
     "description": "A lightweight, simple rgb color class",
     "main": "./dist/esm/index.js",
     "types": "./dist/esm/index.d.ts",
