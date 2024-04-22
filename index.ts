@@ -22,6 +22,19 @@ export class Color extends Uint8ClampedArray {
 }
 
 /**
+ * clone
+ */
+
+export function clone(color: Color): Color {
+    return new Color(
+        color[R],
+        color[G],
+        color[B],
+        color[A]
+    );
+}
+
+/**
  * get the color luminosity
  */
 
@@ -72,7 +85,12 @@ export function isLight(color: Color): boolean {
 export function grayscale(color: Color): Color {
     const gray = lumaYUV(color);
 
-    return new Color(gray, gray, gray, color[A]);
+    return new Color(
+        gray,
+        gray,
+        gray,
+        color[A]
+    );
 }
 
 /**
@@ -98,7 +116,7 @@ export function mix(into: Color, from: Color, rstren = 0.5): Color {
 
 export function fill(color: Color, background = new Color()): Color {
     if (color[A] === 255)
-        return color;
+        return clone(color);
 
     const stren = 1 - color[A] / 255;
 
@@ -150,21 +168,6 @@ export function invert(color: Color): Color {
         255 - color[B],
         color[A],
     );
-}
-
-/**
- * get the color RGBA bytes
- */
-
-export function bytes(color: Color): Uint8Array {
-    const bytes = new Uint8Array(4);
-
-    bytes[0] = color[R];
-    bytes[1] = color[G];
-    bytes[2] = color[B];
-    bytes[3] = color[A];
-
-    return bytes;
 }
 
 /**
